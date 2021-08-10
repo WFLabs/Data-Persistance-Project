@@ -116,7 +116,7 @@ public class MainManager : MonoBehaviour
         SaveData data = new SaveData();
         data.highScore = highScore;
 
-
+         
         string json = JsonUtility.ToJson(data);
 
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
