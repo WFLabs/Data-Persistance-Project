@@ -503,8 +503,11 @@ MonoBehaviour:
   Ball: {fileID: 177912862}
   playername: 
   NameTextObject: {fileID: 1228490391}
+  highScore: 0
   ScoreText: {fileID: 188020406}
   GameOverText: {fileID: 474497238}
+  BestScoreName: {fileID: 2078529056}
+  hsPlayerName: 
 --- !u!1 &455529321
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,7 +992,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1228490392
 RectTransform:
   m_ObjectHideFlags: 0

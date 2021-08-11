@@ -17,6 +17,8 @@ public class MainManager : MonoBehaviour
 
     public Text ScoreText;
     public GameObject GameOverText;
+    public Text BestScoreName;
+    public string hsPlayerName;
 
 
     
@@ -45,9 +47,11 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
-        NameText = NameTextObject.GetComponent<Text>();
-        NameText.text = playername;
+        //NameText = NameTextObject.GetComponent<Text>();
+        //NameText.text = playername;
         LoadData();
+        //highScoreText.text = $"High Score : {loadedhighscore}";
+        BestScoreName.text = $"Best Score: {hsPlayerName} : {highScore}";
     }
 
     private void Update()
@@ -96,6 +100,7 @@ public class MainManager : MonoBehaviour
         if (m_Points > highScore)
         {
             highScore = m_Points;
+            hsPlayerName = playername;
         }
         else { };
     }
@@ -109,13 +114,14 @@ public class MainManager : MonoBehaviour
     class SaveData
     {
         public int highScore;
+        public string hsPlayerName;
     }
 
     public void SaveScore()
     {
         SaveData data = new SaveData();
         data.highScore = highScore;
-
+        data.hsPlayerName = hsPlayerName;
          
         string json = JsonUtility.ToJson(data);
 
@@ -130,6 +136,7 @@ public class MainManager : MonoBehaviour
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
             highScore = data.highScore;
+            hsPlayerName = data.hsPlayerName;
         }
     }
 

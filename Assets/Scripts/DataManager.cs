@@ -16,6 +16,7 @@ public class DataManager : MonoBehaviour
     public int savedHighScore;
 
     public GameObject inputFieldObj;
+    public Text highScoreText;
 
 
     private void Awake()
@@ -31,6 +32,8 @@ public class DataManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        LoadData();
 
         
     }
@@ -61,6 +64,24 @@ public class DataManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+
+    [System.Serializable]
+    class SaveData
+    {
+        public int highScore;
+    }
+    public void LoadData()
+    {
+        string path = Application.persistentDataPath + "/savefile.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+            int loadedhighscore = data.highScore;
+            highScoreText.text = $"High Score : {loadedhighscore}";
+        }
     }
 
 
